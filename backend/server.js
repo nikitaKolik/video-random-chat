@@ -23,7 +23,7 @@ const options = {
 mongoose.set('useCreateIndex', true)
 
 //db
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb+srv://alex:alexpassword@cluster0.3c300.mongodb.net/videoChat?retryWrites=true&w=majority', { useNewUrlParser: true }, (err) => {
 	console.log(err || `Connected to MongoDB.`)
 })
 app.use(cors());

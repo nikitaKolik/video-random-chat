@@ -5,13 +5,10 @@ import reportService from '../services/report';
 import authService from '../services/auth.service';
 import UserTab from './user_tab';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
 
 export default class AdminBoard extends React.Component {
     constructor(props){
@@ -60,6 +57,20 @@ export default class AdminBoard extends React.Component {
         value: newValue
       });
     };
+    addUser = (newUser) => {
+      this.setState({users: [...this.state.users, newUser]});
+    }
+    deleteUser = (index) => {
+      let newUsers = [...this.state.users];
+      newUsers.splice(index, 1);
+      console.log(newUsers);
+      this.setState({users: newUsers});
+    }
+    updateUser = (index, newUser) => {
+      let newUsers = [...this.state.users];
+      newUsers[index] = newUser;
+      this.setState({users: newUsers});
+    }
     render(){
       const {value} = this.state;
         return (
@@ -71,14 +82,17 @@ export default class AdminBoard extends React.Component {
                       onChange={this.handleChange}
                       aria-label="nav tabs example"
                     >
-                      <LinkTab label="Page One"  {...a11yProps(0)} />
-                      <LinkTab label="Page Two"  {...a11yProps(1)} />
-                      <LinkTab label="Page Three"  {...a11yProps(2)} />
+                      <LinkTab label="User"  {...a11yProps(0)} />
+                      <LinkTab label="Report"  {...a11yProps(1)} />
+                      <LinkTab label="Ban"  {...a11yProps(2)} />
                     </Tabs>
                   </AppBar>
                   <TabPanel value={value} index={0}>
                     <UserTab 
                       rows = {this.state.users}
+                      addUser = {this.addUser}
+                      deleteUser = {this.deleteUser}
+                      updateUser = {this.updateUser}
                     />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
@@ -137,10 +151,3 @@ function LinkTab(props) {
     />
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));

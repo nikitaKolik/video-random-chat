@@ -12,7 +12,7 @@ class FilterMenu extends Component {
         this.state = {
           ageMin: 1,
           ageMax: 100,
-          location: '',
+          location: 'All',
           male:true,
           female:true,
         }
@@ -60,6 +60,7 @@ class FilterMenu extends Component {
                       onChange={this.handleLocation}
                       required
                     >
+                      <option>All</option>
                       {
                         this.locationOptions
                       }

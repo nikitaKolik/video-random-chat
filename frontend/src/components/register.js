@@ -12,9 +12,9 @@ class Register extends Component {
     this.state = {
       username: "",
       password: "",
-      age: 0,
+      age: 13,
       gender: 'Male',
-      location: '',
+      location: 'Canada',
       aboutMe: '',
       file: null,
       avatarSrc: null,
@@ -76,8 +76,8 @@ class Register extends Component {
           this.setState({
             successful: true,
           });
+          
           this.props.history.push("/login");
-          window.location.reload();
         }else {
           this.setState({
             successful: false,

@@ -152,7 +152,7 @@ class Main extends Component {
     else this.endCall(true);
   }
   render() {
-    const { viewImg, localSrc, peerSrc, clientProfileFlag, friendId } = this.state;
+    const { viewImg, localSrc, peerSrc, clientProfileFlag, friendId, friendInfo } = this.state;
     return (
       <div> {!this.state.profile && (
   <div className="container-fluid shadow-lg app-main-div">
@@ -164,10 +164,10 @@ class Main extends Component {
       friendInfo = {this.state.friendInfo}
     />
     <div className="d-flex app-board">
-      {_.isEmpty(this.config) && !friendId &&
+      {_.isEmpty(this.config) && !friendInfo &&
         (<Loading />)
       }
-      {!_.isEmpty(this.config) && friendId && (
+      {!_.isEmpty(this.config) && friendInfo && (
             <VideoPanel
               localSrc={localSrc}
               peerSrc={peerSrc}
@@ -175,14 +175,14 @@ class Main extends Component {
               mediaDevice={this.pc.mediaDevice}
             />
           ) }
-        {!_.isEmpty(this.config) && friendId &&  
+        {!_.isEmpty(this.config) && friendInfo &&  
           <MsgBox 
               toggle={this.toggleFriendFlag}
               viewImage={this.viewImage}
               friendId={this.state.friendId}
               avatar={this.state.friendInfo.avatar}
           />}
-        {!_.isEmpty(this.config) && friendId && clientProfileFlag && 
+        {!_.isEmpty(this.config) && friendInfo && clientProfileFlag && 
           <ClientProfile 
               clientInfo = {this.state.friendInfo}
               toggle={this.toggleFriendFlag}

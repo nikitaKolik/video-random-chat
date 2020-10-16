@@ -65,7 +65,9 @@ class Login extends Component {
         });
     }
   }
-
+  toRegister = () => {
+    this.props.history.push('/register');
+  }
   render() {
     const { isLoggedIn, message } = this.props;
     if (isLoggedIn) {
@@ -93,7 +95,7 @@ class Login extends Component {
                       className="app-info-input"
                       value={this.state.username}
                       onChange={this.onChangeUsername}
-                      style={{ border:'none', borderBottom: "solid 2px #eee"}}
+                      style={{ border:'none', borderBottom: "solid 2px #eee", width: '178px'}}
                     />
                 </div>
 
@@ -106,7 +108,7 @@ class Login extends Component {
                     value={this.state.password}
                     onChange={this.onChangePassword}
                     validations={[required]}
-                    style={{ border:'none', borderBottom: "solid 2px #eee"}}
+                    style={{ border:'none', borderBottom: "solid 2px #eee", width: '178px'}}
                   />
                 </div>
 
@@ -138,7 +140,7 @@ class Login extends Component {
             />
           </Form>
           <div style={{textAlign: 'center'}}>
-            Not a member?<a href="/register" style={{color: 'slateblue', display: 'block'}}>Sign up now</a>
+            Not a member?<a onClick={this.toRegister} style={{color: 'slateblue', display: 'block'}}>Sign up now</a>
           </div>
         </div>
       </div>
